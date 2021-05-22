@@ -67,7 +67,22 @@
                         
                         <div class="row">
                             <div class="col-lg-12">
+                                <form method="post" action="">
+                                    {% comment %} <input type="text" name="search" id="search" class="form-control" placeholder="Search ............"> {% endcomment %}
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">Search</div>
+                                                    <input type="text" id="search" name="username3" class="form-control">
+                                                    <div class="input-group-addon">
+                                                        <i class="fa fa-search"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                </form>
                                 <div class="card">
+                                    <table id="tbl1" class="table table-hover table-bordered">
+                                    </table>
+
                                     <table class="table table-hover table-bordered" id="tbl">
                                         <tr align="center">
                                             <th>ID</th>
@@ -177,7 +192,24 @@
     $('#id').val(id); 
     });
     </script>
-    
+
+    <script>
+        $(document).ready(function(){
+            $('#search').on('keyup',function(){
+                var search_text = $('#search').val();
+                $.ajax({
+                    url: '/students/tmp/',
+                    type: 'get',
+                    data: {"data":search_text},
+                    datatype: 'text/html',
+                    success: function(data){
+                        $('#tbl').html(data);
+                    }
+                });
+            });
+        })
+    </script>
+
 </body>
 
 </html>

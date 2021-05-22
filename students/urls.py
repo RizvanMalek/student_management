@@ -7,5 +7,6 @@ urlpatterns = [
     path('add_model/',views.add_model,name="add_model"),
     path('delete_model/',views.delete_model,name="delete_model"),
     path('edit/<int:id>',views.edit,name="edit"),
+    path('tmp/',views.tmp,name="tmp"),
     # path('delete_tmp/',views.delete_tmp,name="delete_tmp"),
 ]

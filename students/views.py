@@ -52,3 +52,24 @@ def delete_model(request):
         return redirect('/students/listing')
     else:
         return HttpResponse("Something Went Wrong")
+
+
+def tmp(request):
+    if request.GET:
+        data = StudentsModel.objects.filter(name__icontains=request.GET['data'])
+        tbl = "<tr align='center'><th>ID</td><th>NAME</td><th>EMAIL</td><th>STATUS</td><th>ACTION</td></tr>"
+        spn = ""
+        for val in data:
+            tbl+= "<tr align='center'>"
+            tbl+= "<td>"+str(val.id)+"</td>"
+            tbl+= "<td>"+val.name+"</td>"
+            tbl+= "<td>"+val.email+"</td>"
+            if str(val.is_active) == "1":
+                spn = "<span class='status--process'>Active</span>"
+            else:
+                spn = "<span class='status--denied'>Not Active</span>"            
+            tbl+= "<td>"+spn+"</td>"
+            tbl+="<td><a href='/students/edit/"+str(val.id)+"' class='btn btn-primary'><i class='fa fa-edit'></i></a> "
+            tbl+="<button type='button' class='btn btn-danger' data-toggle='modal' data-target='#staticModal' data-id="+str(val.id)+" id='p'><i class='fa fa-trash-alt'></i></button></td>"                                                                                                        
+            tbl+= "</tr>"
+        return HttpResponse(tbl)
