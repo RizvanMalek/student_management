@@ -39,11 +39,16 @@ def add_model(request):
             else:
                 return redirect('/students/add')
 
-def delete_model(request,id):
-    StudentsModel.objects.filter(id=id).delete()
-    return redirect('/students/listing')
 
 
 def edit(request,id):
     data = StudentsModel.objects.get(id=id)
     return render(request,'students/add.html',{"data":data})
+
+def delete_model(request):
+    if request.POST:
+        id = request.POST['id']
+        StudentsModel.objects.filter(id=id).delete()
+        return redirect('/students/listing')
+    else:
+        return HttpResponse("Something Went Wrong")

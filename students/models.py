@@ -11,3 +11,10 @@ class StudentsModel(models.Model):
 
 class Meta:
     db_table = 'StudentModel'
+
+class India(models.Model):
+    id = models.AutoField(primary_key=True)
+    age = models.IntegerField(max_length=1)
+
+
+
