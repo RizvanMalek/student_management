@@ -17,5 +17,5 @@ Two Module
  - Books
   - Add/edit/delete Books by Admin
 
-- Developer
+- Developers
  - Rizvan Malek
